@@ -20,6 +20,10 @@ class EloSystem:
         self.rating_history: dict[int, list] = {}  # team id: [team ratings]
         self.game_history: dict[int, list] = {} # team id: [team w/l results]
 
+        # Set default save path relative to THIS FILE's location
+        self_dir = Path(__file__).parent  # app/ml/
+        self.default_save_path = self_dir / "saved_models" / "team_ratings.json"
+
     def get_rating(self, team_id: int):
         return self.team_ratings.get(team_id, self.initial_rating)
     
@@ -244,15 +248,14 @@ class EloSystem:
         }
 
 
-    def _save_ratings(self, filepath: str = "saved_models/team_ratings.json") -> None:
+    def _save_ratings(self) -> None:
         """
         Returns None and saves list of team ratings 
           to json file for data persistence. 
           
-          Must run after update_ratings is called.
+        Must run after update_ratings is called.
         """
-        
-        Path(filepath).parent.mkdir(parents=True, exist_ok=True)
+        filepath = self.default_save_path
         
         data = {
             'ratings': {str(k): v for k, v in self.team_ratings.items()},
@@ -272,9 +275,15 @@ class EloSystem:
         print(f"Saved {len(self.team_ratings)} team ratings to {filepath}")
     
 
-    def _load_ratings(self, filepath: str = "saved_models/team_ratings.json"):
-        """Load ratings and histories from file"""
-        
+    def _load_ratings(self):
+        """
+        Returns None and loads stored data for games and 
+          team elos onto the EloSystem Class for computation.
+
+        Must be run before any new elo-calculations
+        """
+        filepath = self.default_save_path
+
         with open(filepath, 'r') as f:
             data = json.load(f)
         
@@ -301,36 +310,3 @@ class EloSystem:
         
         print(f"Loaded {len(self.team_ratings)} team ratings")
         print(f"Last updated: {data.get('last_updated', 'Unknown')}")
-
-
-
-elo = EloSystem(k_factor=20)
-
-import os
-print("Current directory:", os.getcwd())
-print("File exists?", os.path.exists("saved_models/team_ratings.json"))
-elo._save_ratings()
-elo._load_ratings()
-
-
-print("TEST 1: 25-point blowout")
-new_lal, new_gsw = elo.update_ratings(
-    team_home_id=1610612747,  # Lakers
-    team_away_id=1610612744,  # Warriors
-    home_score=125,
-    away_score=100,
-    game_date=datetime.now()
-)
-print(new_lal, new_gsw)
-
-print("\nTEST 2: 105-point OBLITERATION")
-elo.team_ratings[1610612747] = 1300  # Reset
-elo.team_ratings[1610612744] = 1300  # Reset
-new_lal, new_gsw = elo.update_ratings(
-    team_home_id=1610612747,
-    team_away_id=1610612744,
-    home_score=125,
-    away_score=20,
-    game_date=datetime.now()
-)
-print(new_lal, new_gsw)

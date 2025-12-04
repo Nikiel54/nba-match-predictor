@@ -8,7 +8,7 @@ class NBADataProcessor:
     Class containing all logic and methods for cleaning
      and pre-processing raw csv data.
     '''
-    def __init__(self, data_path: str = "../data/raw/game.csv"):
+    def __init__(self, data_path: str = "../../data/raw/game.csv"):
         self.data_path = data_path
         self.imputer = SimpleImputer(strategy='mean')
 
