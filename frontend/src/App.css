@@ -7,6 +7,14 @@
   --primary-text: #F1F5F9;
   --secondary-text: #A7B0BE;
 
+  --blue: #1279df;
+  --blue-hover: #1876D1;
+  --blue-glow: rgba(30, 144, 255, 0.35);
+
+  --win-clr: #4ADE80;
+  --lose-clr: #F87171;
+  --trophy-clr: #FACC15;
+
 
   flex: 1 1 auto;
   display: flex;
@@ -58,6 +66,9 @@
 .page-body {
   flex: 1 1 auto;
   overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
 }
 
 .instructions {
@@ -74,13 +85,69 @@
   font-weight: 300;
 }
 
+.card-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .card {
-  background: #121a26;              /* panel background */
+  flex: 0 0 35rem;
+  display: flex;
+  align-items: center;
+  background: var(--secondary-bg);              /* panel background */
   border: 1px solid #243044;        /* subtle border */
   border-radius: 14px;              /* smooth curves */
-  padding: 1.5rem;
+  padding: 2.2rem;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
+  overflow: visible;
+}
+
+#dashboard-form {
+  flex: 1 1 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 1.5em;
+}
+
+#dashboard-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  color:#F1F5F9;
+}
+
+#dashboard-form .selection-btn {
+  display: flex;
+  background-color: transparent;
+}
+
+#dashboard-form select {
+  flex: 1 1 auto;
+  background-color: var(--divider-clr);
+  padding: 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  overflow: visible;
+}
+
+.prediction-button {
+  text-align: center;
+  border-radius: 6px;
+  background-color: var(--blue);
+  border: 1px solid var(--secondary-bg);
+  box-shadow: 0 0 5px var(--blue-glow);
+  font-weight: 600;
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+.error-txt {
+  font-size: 11px;
+  text-align: center;
+  color: var(--lose-clr);
 }
 
 
