@@ -4,7 +4,7 @@ import { TeamSelectionForm } from "./TeamSelectionForm"
 import { PredictionResults } from "./PredictionResults";
 import { usePredictions } from "../../customhooks/predictionFetching";
 
-export function PredictionDashboard({ team_data }) {
+export function PredictionDashboard({ teamData }) {
     const [homeTeam, setHomeTeam] = useState(""); // data for filled out fields
     const [awayTeam, setAwayTeam] = useState("");
     const [homeTeamError, setHomeTeamError] = useState(false); // data for incorrectly filled out field states
@@ -32,7 +32,7 @@ export function PredictionDashboard({ team_data }) {
             <Card display="flex-row">
                 <form action="post" id='dashboard-form'>
                     <TeamSelectionForm
-                        team_data={team_data}
+                        teamData={teamData}
                         homeTeam={homeTeam}
                         setHomeTeam={setHomeTeam}
                         awayTeam={awayTeam}
@@ -52,6 +52,7 @@ export function PredictionDashboard({ team_data }) {
                 error={error}
                 loading={loading}
                 isSubmitted={isSubmitted}
+                teamData={teamData}
             />
         </main>
     )

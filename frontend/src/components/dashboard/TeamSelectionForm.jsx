@@ -1,6 +1,6 @@
 
 export function TeamSelectionForm({
-    team_data, 
+    teamData, 
     homeTeam, 
     setHomeTeam, 
     awayTeam, 
@@ -23,12 +23,12 @@ export function TeamSelectionForm({
                                 if (e.target.value === "") {
                                     setHomeTeam("");
                                 } else {
-                                    setHomeTeam(team_data.find((team) => team.name === e.target.value));
+                                    setHomeTeam(teamData.find((team) => team.name === e.target.value));
                                     setHomeTeamError(false);
                                 }
                             }}>
                             <option key="0" value="">Select a team</option>
-                            {team_data.map((team) => {
+                            {teamData.map((team) => {
                                 return (
                                     <option key={team.id} value={team.name}>{team.name}</option>
                                 )
@@ -51,12 +51,12 @@ export function TeamSelectionForm({
                                 if (e.target.value === "") {
                                     setAwayTeam("");
                                 } else {
-                                    setAwayTeam(team_data.find((team) => team.name === e.target.value));
+                                    setAwayTeam(teamData.find((team) => team.name === e.target.value));
                                     setAwayTeamError(false);
                                 }
                             }}>
                             <option key="0" value="">Select a team</option>
-                            {team_data.map((team) => {
+                            {teamData.map((team) => {
                                 return (
                                     <option key={team.id} value={team.name}>{team.name}</option>
                                 )

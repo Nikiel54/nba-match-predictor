@@ -10,7 +10,7 @@ import { BrowserRouter, Routes, Route, Router } from 'react-router-dom'
 function App() {
   const [selectedTeamAnalytics, setSelectedTeamAnalytics] = useState("Celtics")
 
-  const team_data = [
+  const teamData = [
   { "name": "Atlanta Hawks", "id": 1610612737 },
   { "name": "Boston Celtics", "id": 1610612738 },
   { "name": "Brooklyn Nets", "id": 1610612751 },
@@ -47,7 +47,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Layout />} >
-          <Route index={true} element={<PredictionDashboard team_data={team_data} />}/>
+          <Route index={true} element={<PredictionDashboard teamData={teamData} />}/>
 
           <Route path='analytics' 
             element={<TeamAnalytics 
