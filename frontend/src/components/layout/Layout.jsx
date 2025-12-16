@@ -9,7 +9,7 @@ export default function Layout() {
     return (
         <>
             <Navbar selectedPage={selectedPage} setSelectedPage={setSelectedPage} />
-            <Outlet />
+            <Outlet setSelectedPage={setSelectedPage} />
             <Footer/>
         </>
     )

@@ -1,0 +1,80 @@
+/* STYLING FOR THE ABOUT PAGE */
+
+#about-desc-section {
+    display: grid;
+    grid-template-columns: 5fr 3fr;
+    grid-template-rows: 1fr;
+    gap: 2em;
+    justify-content: space-between;
+    margin-top: 2em;
+    margin-bottom: 3em;
+}
+
+#about-desc-section h1 {
+    color: #646cff;
+}
+
+#about-desc-section p {
+    font-size: 1.1rem;
+}
+
+#about-desc-section > div {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+#about-desc-section > div:last-child {
+    align-items: center;
+    justify-content: center;
+}
+
+#about-desc-section > div:first-child > div {
+    display: flex;
+}
+
+#link-to-predictor-btn {
+    display: flex;
+    background-color: var(--blue);
+    color: var(--primary-text);
+    padding: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+}
+
+.main-img-cont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2em;
+    background-color: var(--secondary-bg);
+    border: 2px solid #2d306a;
+    border-radius: 5px;
+}
+
+
+#about-proj-breakdown {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#about-proj-breakdown > strong {
+    color: #3e3f56
+}
+
+#about-proj-breakdown > h1 span {
+    color: #646cff;
+}
+
+.horiz-divider {
+    width: 5em;
+    height: 3px;
+    background-color: var(--secondary-bg);
+}
+
+
+
+

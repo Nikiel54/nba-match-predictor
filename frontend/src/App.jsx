@@ -1,10 +1,10 @@
 import './App.css'
 import { TeamAnalytics } from './components/analytics/TeamAnalytics'
 import { PredictionDashboard } from './components/dashboard/PredictionDashboard'
-import { AboutPage } from './components/about/AboutPage'
+import AboutPage from './components/about/AboutPage'
 import Layout from './components/layout/Layout'
 import { useEffect, useState } from 'react'
-import { BrowserRouter, Routes, Route, Router } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 
 function App() {
