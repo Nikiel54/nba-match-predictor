@@ -11,20 +11,28 @@ export default function TopTeamsDisplay({ teamData }) {
     const width = "3rem";
 
     // fetch top 5 teams
-    const { teamRatings, loading, error } = useTopTeams();
+    // MUST ADD IN FALLBACK IF ERROR EXISTS I.E. STATIC IMAGE
+    // eslint-disable-next-line no-unused-vars
+    const { teamRatings, error } = useTopTeams();
 
     useEffect(() => {
-        if (!teamRatings) return;
+        if (!teamRatings || !teamData || teamData.length === 0) return;
 
         const teamsArray = Object.entries(teamRatings);
         const sortedTopFive = teamsArray
             .sort((a, b) => b[1] - a[1])
-            .slice(0, 5);
+            .slice(0, 5)
+            .map(([teamId, rating]) => {
+                const team = teamData.find(t => t.id == teamId);
+
+                return {
+                    id: teamId,
+                    rating,
+                    name: team?.name ?? "Unknown Team"
+                };
+            });
         
-        sortedTopFive.map((team) => {
-            const teamName = teamData.find(teamName => (teamName.id == team[0]))
-            team[0] = teamName.name;
-        })
+        
 
         // eslint-disable-next-line react-hooks/set-state-in-effect
         setTopTeams(sortedTopFive);
@@ -54,7 +62,7 @@ export default function TopTeamsDisplay({ teamData }) {
                 <div className="teams-display-names">
                     {topTeams.map((team, i) => (
                         <p key={i}>
-                            {team[0].split(' ')[1]}
+                            {team.name.split(' ').at(-1)}
                         </p>
                     ))}
                 </div>

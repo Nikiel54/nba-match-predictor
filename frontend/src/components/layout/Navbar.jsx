@@ -1,7 +1,7 @@
-import { Link } from "react-router";
+import { NavLink } from "react-router";
 import basketballIcon from "../../assets/basketball.png";
 
-export default function Navbar({ selectedPage, setSelectedPage }) {
+export default function Navbar() {
 
     return (
         <nav id="navbar">
@@ -12,18 +12,21 @@ export default function Navbar({ selectedPage, setSelectedPage }) {
                 <strong>NBA Match Predictor</strong>
             </div>
             <div className="nav-links">
-                <Link to='/'
-                    className={selectedPage === "Dashboard" ? "is-active-page" : "not-active-page"}
-                    onClick={() => setSelectedPage("Dashboard")}>Dashboard
-                </Link>
-                <Link to='/analytics'
-                    className={selectedPage === "Analytics" ? "is-active-page" : "not-active-page"}
-                    onClick={() => setSelectedPage("Analytics")}>Team Analytics
-                </Link>
-                <Link to='/about'
-                    className={selectedPage === "About" ? "is-active-page" : "not-active-page"}
-                    onClick={() => setSelectedPage("About")}>About
-                </Link>
+                <NavLink to='/'
+                    className={({ isActive }) => isActive ? "is-active-page" : "not-active-page"}
+                >
+                    Dashboard
+                </NavLink>
+                <NavLink to='/analytics'
+                    className={({ isActive }) => isActive ? "is-active-page" : "not-active-page"}
+                >
+                    Team Analytics
+                </NavLink>
+                <NavLink to='/about'
+                    className={({ isActive }) => isActive ? "is-active-page" : "not-active-page"}
+                >
+                    About
+                </NavLink>
             </div>
         </nav>
     )
