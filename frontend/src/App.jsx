@@ -43,7 +43,7 @@ function App() {
             element={<TeamAnalytics />} 
           />
 
-          <Route path='about' element={<AboutPage />} />
+          <Route path='about' element={<AboutPage teamData={teamData} />}/>
         </Route>
       </Routes>
     </BrowserRouter>
