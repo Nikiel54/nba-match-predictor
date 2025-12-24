@@ -12,10 +12,7 @@ class NBADataProcessor:
         self.data_path = data_path
         self.imputer = SimpleImputer(strategy='mean')
 
-
-    def load_and_clean_data(self) -> pd.DataFrame:
-        df = pd.read_csv(self.data_path)
-
+    def clean_data(self, df: pd.DataFrame) -> pd.DataFrame:
         df['game_date'] = pd.to_datetime(df['game_date'])
 
         # Target columns
@@ -26,6 +23,14 @@ class NBADataProcessor:
         df[df_numeric.columns] = self.imputer.fit_transform(df_numeric)
 
         return df
+
+
+    def load_and_clean_data(self) -> pd.DataFrame:
+        df = pd.read_csv(self.data_path)
+        df_processed = self.clean_data(df)
+
+        return df_processed
+    
     
 
     def split_dataset(self, df: pd.DataFrame, year_from: int = 1978, year_to: int = 2020):

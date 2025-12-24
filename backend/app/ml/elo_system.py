@@ -32,10 +32,10 @@ class EloSystem:
     def get_team_names(self):
         return self.team_names
     
-    def get_last_game_date(self):
+    def get_last_game_date(self) -> datetime:
         return self.last_game_date
     
-    def _update_last_game_date(self, new_game_date: datetime):
+    def _update_last_game_date(self, new_game_date: datetime) -> None:
         if (self.last_game_date == None):
             self.last_game_date = new_game_date
         elif (new_game_date > self.last_game_date):
@@ -224,7 +224,7 @@ class EloSystem:
             self._update_last_game_date(game_date)
             self._update_rating_history(team_home_id, new_rating_home, game_date)
             self._update_rating_history(team_away_id, new_rating_away, game_date)
-        
+
         return new_rating_home, new_rating_away
     
 

@@ -49,6 +49,7 @@ class PredictionService:
         """
         return self.Elo.team_ratings
     
+    
 
 _singleton_prediction_service = None
 def get_prediction_service() -> PredictionService:

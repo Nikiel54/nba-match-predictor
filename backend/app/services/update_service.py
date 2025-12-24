@@ -1,0 +1,53 @@
+### Service for updating team ratings and scores ###
+
+from typing import Dict
+import pandas as pd
+
+class UpdateService:
+    def __init__(self):
+        from ml.elo_system import EloSystem
+        from ml.data_cleaning import NBADataProcessor
+
+        self.Elo = EloSystem()
+        self.Processor = NBADataProcessor()
+        self.Elo._load_ratings()
+    
+    def update_team_ratings(self, new_games: pd.DataFrame) -> bool:
+        new_games_processed = self.Processor.clean_data(new_games)
+
+        n = len(new_games_processed)
+
+        # empty dataset
+        if (n == 0):
+            return True
+
+        try:
+            print("Processing games now")
+            for count, (_, game) in enumerate(new_games_processed.iterrows(), start=1):
+                self.Elo.update_ratings(
+                    team_home_id= int(game["team_id_home"]),
+                    team_away_id= int(game["team_id_away"]),
+                    home_score= int(game['pts_home']),
+                    away_score= int(game['pts_away']),
+                    game_date= game['game_date']
+                )
+
+                if (count % 50 == 0):
+                    print(f"Processed {count} games out of {n}")
+
+            self.Elo._save_ratings()
+            return True
+        except:
+            return False
+
+
+
+_singleton_update_service = None
+def get_update_service() -> UpdateService:
+    global _singleton_update_service
+
+    if (_singleton_update_service == None):
+        _singleton_update_service = UpdateService() # invoke update service class
+    return _singleton_update_service
+
+

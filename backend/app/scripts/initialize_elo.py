@@ -17,7 +17,7 @@ def initialize_elo() -> None:
     n = len(games_df)
 
     print("Processing games now")
-    for count, (idx, game) in enumerate(games_df.iterrows(), start=1):
+    for count, (_, game) in enumerate(games_df.iterrows(), start=1):
         EloSys.update_ratings(
             team_home_id= int(game["team_id_home"]),
             team_away_id= int(game["team_id_away"]),
