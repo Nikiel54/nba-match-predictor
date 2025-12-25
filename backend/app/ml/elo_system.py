@@ -23,8 +23,8 @@ class EloSystem:
         self.last_game_date = None
 
         # Set default save path
-        self_dir = Path(__file__).parent  # app/ml/
-        self.default_save_path = self_dir / "saved_models" / "team_ratings.json"
+        self_dir = Path(__file__).parent.parent  # backend/app 
+        self._default_save_path = self_dir / "db" / "database.json"
 
     def get_rating(self, team_id: int):
         return self.team_ratings.get(team_id, self.initial_rating)
@@ -271,7 +271,7 @@ class EloSystem:
           
         Must run after update_ratings is called.
         """
-        filepath = self.default_save_path
+        filepath = self._default_save_path
         
         data = {
             'ratings': {str(k): v for k, v in self.team_ratings.items()},
@@ -300,7 +300,7 @@ class EloSystem:
 
         Must be run before any new elo-calculations
         """
-        filepath = self.default_save_path
+        filepath = self._default_save_path
 
         with open(filepath, 'r') as f:
             data = json.load(f)

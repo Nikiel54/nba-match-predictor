@@ -51,3 +51,6 @@ def get_update_service() -> UpdateService:
     return _singleton_update_service
 
 
+## Need to fix:
+# Location of database
+# Add in methods to add team names to array of teams

@@ -33,6 +33,7 @@ def initialize_elo() -> None:
     return None
 
 
+## Ran once to initialize elo model off collected raw data
 initialize_elo()
 
 
