@@ -41,10 +41,8 @@ A full-stack machine learning application that predicts NBA game outcomes using 
 
 ### Backend
 - **FastAPI**: Modern, fast web framework for building APIs
-- **Python 3.11**: Core programming language
 - **NBA API**: Official NBA statistics and game data
 - **Pandas**: Data processing and analysis
-- **Uvicorn**: ASGI server for production deployment
 
 ### Frontend
 - **React**: UI library for building interactive interfaces
