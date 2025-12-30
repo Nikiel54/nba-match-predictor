@@ -13,7 +13,13 @@ class UpdateService:
         self.Elo._load_ratings()
     
     def update_team_ratings(self, new_games: pd.DataFrame) -> bool:
+        if new_games is None or new_games.empty:
+            return True 
+        
         new_games_processed = self.Processor.clean_data(new_games)
+
+        if new_games_processed.empty:
+            return True
 
         n = len(new_games_processed)
 

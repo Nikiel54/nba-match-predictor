@@ -150,17 +150,23 @@ class NBADataPipeline:
         dt_now = datetime.now()
 
         if mode == "daily":
-            # For daily mode, only check yesterday
-            yesterday = dt_now - timedelta(days=1)
-            date_from = yesterday.strftime('%m/%d/%Y')
-            date_to = yesterday.strftime('%m/%d/%Y')
-            seasons = [self._szn_for_date(yesterday)]
+            try:
+                # For daily mode, only check yesterday
+                yesterday = dt_now - timedelta(days=1)
+                date_from = yesterday.strftime('%m/%d/%Y')
+                date_to = yesterday.strftime('%m/%d/%Y')
+                seasons = [self._szn_for_date(yesterday)]
+            except Exception as e:
+                print(f"Error fetching yesterday {date_from}: {e}")
         elif mode == "catchup":
-            # For catchup mode, get all seasons from last_date to today
-            today = dt_now
-            date_from = (last_dt + timedelta(days=1)).strftime('%m/%d/%Y')
-            date_to = today.strftime('%m/%d/%Y')
-            seasons = self._get_unique_seasons(last_dt, today)
+            try:
+                # For catchup mode, get all seasons from last_date to today
+                today = dt_now
+                date_from = (last_dt + timedelta(days=1)).strftime('%m/%d/%Y')
+                date_to = today.strftime('%m/%d/%Y')
+                seasons = self._get_unique_seasons(last_dt, today)
+            except Exception as e:
+                print(f"Error fetching seasons {seasons}: {e}")
 
         all_games = []
     
@@ -203,7 +209,12 @@ class NBADataPipeline:
     ) -> None:
         last_date_iso: str = self.last_update
         new_games = self.fetch_games_since(last_date_iso)
+
+        if new_games is None or new_games.empty:
+            return
+        
         self._update_service.update_team_ratings(new_games)
+        return None
 
 
 

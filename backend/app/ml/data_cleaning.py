@@ -13,6 +13,12 @@ class NBADataProcessor:
         self.imputer = SimpleImputer(strategy='mean')
 
     def clean_data(self, df: pd.DataFrame) -> pd.DataFrame:
+        if df.empty:
+            return df
+
+        if 'game_date' not in df.columns:
+            raise ValueError(f"Expected column 'game_date', got {list(df.columns)}")
+
         df['game_date'] = pd.to_datetime(df['game_date'])
 
         # Target columns
