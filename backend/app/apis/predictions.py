@@ -3,7 +3,7 @@
 
 from fastapi import APIRouter, HTTPException, Depends
 from pydantic import BaseModel
-from services.prediction_service import PredictionService, get_prediction_service
+from app.services.prediction_service import PredictionService, get_prediction_service
 
 router = APIRouter()
 

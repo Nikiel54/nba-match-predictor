@@ -1,6 +1,6 @@
 #### SERVICE FOR HANDLING PREDICTION REQUESTS ####
 
-from ml.elo_system import EloSystem
+from app.ml.elo_system import EloSystem
 from typing import Dict
 
 
