@@ -222,6 +222,7 @@ if __name__ == "__main__":
     update_service = get_update_service()
 
     pipeline = NBADataPipeline(update_service)
+    pipeline.toggle_mode_daily()
     result = pipeline.fetch_and_update_games()
     
 

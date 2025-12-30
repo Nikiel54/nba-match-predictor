@@ -27,7 +27,7 @@ jobs:
 
       - name: Run pipeline
         run: |
-          cd backend
+          cd backend/app
           python -m app.background_tasks.pipeline
 
       - name: Commit and push updated JSON
