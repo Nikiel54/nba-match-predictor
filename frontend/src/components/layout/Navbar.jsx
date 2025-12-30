@@ -9,18 +9,13 @@ export default function Navbar() {
                 <div className="logo-img-container">
                     <img className="logo-img" src={basketballIcon} alt="Image of a basketball" width="1.3em" height="auto"/>
                 </div>
-                <strong>NBA Match Predictor</strong>
+                <strong>CourtSense</strong>
             </div>
             <div className="nav-links">
                 <NavLink to='/'
                     className={({ isActive }) => isActive ? "is-active-page" : "not-active-page"}
                 >
                     Dashboard
-                </NavLink>
-                <NavLink to='/analytics'
-                    className={({ isActive }) => isActive ? "is-active-page" : "not-active-page"}
-                >
-                    Team Analytics
                 </NavLink>
                 <NavLink to='/about'
                     className={({ isActive }) => isActive ? "is-active-page" : "not-active-page"}
