@@ -7,7 +7,7 @@ A full-stack machine learning application that predicts NBA game outcomes using 
 ![React](https://img.shields.io/badge/React-18.0-61DAFB)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 
-## 🎯 Features
+## Features
 
 - **Real-time NBA Game Predictions**: Predict outcomes of upcoming matchups using Elo ratings
 - **Dynamic Elo Rating System**: Continuously updated ratings based on game results and performance
@@ -16,7 +16,7 @@ A full-stack machine learning application that predicts NBA game outcomes using 
 - **RESTful API**: Well-documented API endpoints for predictions and team statistics
 - **Interactive UI**: Clean, responsive interface built with React
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 ┌─────────────┐         ┌──────────────┐         ┌─────────────┐
@@ -37,7 +37,7 @@ A full-stack machine learning application that predicts NBA game outcomes using 
                         └──────────────┘
 ```
 
-## 🚀 Tech Stack
+## Tech Stack
 
 ### Backend
 - **FastAPI**: Modern, fast web framework for building APIs
